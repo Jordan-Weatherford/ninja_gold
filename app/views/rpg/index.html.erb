@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ninja Gold!</title>
+	<style>
+		.forms { border: 1px solid black; display: inline-block; width: 20%; text-align: center; padding: 5px; }
+		textarea { overflow-y: scroll; }
+		.display { border: 1px solid black; width: 82%; height: 150px; overflow-y: scroll; padding: 20px; }
+		.margin { margin: -8px; }
+		.green { color: green; }
+		.red { color: red; }
+		#gold { border: 1px solid black; display: inline-block; width: 110px; margin-bottom: 5px; padding: 3px; }
+		#gold_label { display: inline-block; }
+		#wrapper { width: 100%; }
+	</style>
+</head>
+<body>
+	<div id="wrapper">
+		<p id='gold_label'>Your Gold:</p>
+		<div id='gold'><%= session[:gold] %></div>
+		<br>
+
+		<div class='forms'>
+			<h4>Farm</h4>
+			<p>(earns 10-20 gold)</p>
+			<form action="/success/farm" method="get">
+			    <input type='submit' value='Find Gold!'>
+			</form>
+		</div>
+
+		<div class='forms'>
+			<h4>Cave</h4>
+			<p>(earns 5-10 gold)</p>
+			<form action="/success/cave" method="get">
+			    <input type='submit' value='Find Gold!'>
+			</form>
+		</div>
+
+		<div class='forms'>
+			<h4>House</h4>
+			<p>(earns 2-5 gold)</p>
+			<form action="/success/house" method="get">
+			    <input type='submit' value='Find Gold!'>
+			</form>
+		</div>
+
+		<div class='forms'>
+			<h4>Casino</h4>
+			<p>(earns/takes 0-50 gold)</p>
+			<form action="/success/casino" method="get">
+			    <input type='submit' value='Find Gold!'>
+			</form>
+		</div>
+		
+		<br>
+		<br>
+		<br>
+		<br>
+
+		<form action="/success/reset" method="get">
+			<input type='submit' value='Reset'>
+		</form>
+
+		<p>Activities:</p>
+		<br>
+		<div class='display'>
+			<% session[:activities].reverse.each do |activity| %>
+			<p class="margin <%= activity[1] %>"><%= activity[0] %></p><br>
+			<% end %>
+		</div><!-- display div end -->
+	</div><!--  wrapper-->
+</body>
+</html>
